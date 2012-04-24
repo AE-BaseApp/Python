@@ -1,0 +1,43 @@
+/* -------------------------------------------------------------- 
+  
+   Boilerplate Screen Styles
+   * Version:   0.5 (2007-11-19)
+   
+-------------------------------------------------------------- */
+
+@import "lib/reset.css";
+@import "lib/typography.css";
+@import "lib/forms.css";
+@import "lib/plugins/tabs.css";
+
+
+/* Site
+-------------------------------------------------------------- */
+#wrapper {width:960px; margin-left:auto; margin-right:auto; padding:1em; background:white; border-radius:15px; -moz-border-radius:15px;}
+header h1,img {float:left;}
+#header img {margin-left:2em;}
+body {background:#44ea77;}
+
+.right {float:right;}
+.left {float:left;}
+
+.red {color:red;}
+.blue {color:blue;}
+.green {color:green;}
+
+.bannerAd {width:468px;height:60px;}
+
+.shouts {width:55%;}
+.message {border-left: 3px solid red; padding-left: .5em; margin-bottom:.5em; word-wrap: break-word; width:93%;}
+.shoutbox {width:43%; float:right; border:2px solid black; padding:.5em; margin-left:1em; border-radius:15px; -moz-border-radius:15px;}
+
+.divClear {clear:both;}
+.toprule {padding-bottom:.5em; margin-bottom:1em; border-bottom:3px solid #44ea77;}
+.bottomrule {padding-top:1em; margin-bottom:.5em; border-bottom:3px solid #44ea77;}
+.centerme {text-align:center; width:440px;}
+
+.l35 {width:35%;}
+
+.mr1em {margin-right:1em;}
+.mb1em {margin-bottom:1em;}
+

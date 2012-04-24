@@ -1,0 +1,36 @@
+# ignore python compiled files
+*.pyc
+
+# ignore vim swp files and gedit temp files : Blood gedit making a mess of everything
+*.swp
+*.*~
+.vim
+
+# ignore db files : Don't let the internal info be sent out
+*.db
+*.sqlite
+
+# ignore any diff/patch files :  Who left these here?
+*.diff
+*.patch
+*.log
+
+# ignore eclipse trash settings files
+.project
+.pydevproject
+.settings
+
+# ignore the bloody Mac folder settings files
+.DS_Store
+
+# misc files that might creap in
+.bash_history
+.bashrc
+.lesshst
+.mysql_history
+.ssh
+.subversion
+.toprc
+.viminfo
+
+# Man there is a lot of garbage to ignore!
