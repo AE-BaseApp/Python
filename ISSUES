@@ -1,0 +1,30 @@
+THE SOFTWARE IS NOT PRODUCTION READY!
+
+The list below should not be considered Authoritative.  It is simply a list of
+issues that the developers have noticed.  The software is Open Source so you
+are free to modify the code.  Those modifications could result in issues that
+compromise the software.  You should have a Qualified Engineer go over this
+software as well as your changes before deployment.
+
+As of Version 2 the following is a list of known issues:
+
+  *  The software implicitly trusts User Input, there isn't any validation. This
+     can lead to malicious content being stored and distributed.  Before using
+     this software for public facing applications the user input should be
+     validated and cleaned.
+  *  The software uses GET/POST methods which have been shown to be weak to
+     Cross Site Request Forgery (CSRF) and code needs to be developed to
+     prevent your application from being vulnerable.
+  *  Cross Site Scripting (XSS) As above user input is not filtered thus a
+     malicious user could add JavaScript to a Shout that is malicious.
+  *  SQL Injection, this software uses the App Engine Datastore so most likely
+     there is little chance of a SQL Injection attack, but it is possible with
+     the current code a malicious user could inject code that creates the same 
+     effect.
+  *  Currently the software does not contain any error handling.  If something
+     causes an error it will not be trapped and the software will crash.
+  *  OpenID is only functioning on providers who have a login page.  Providers
+     whom only authenticate via a URL are currently not supported.
+
+This is only a list of known issues.  There could be other issues that have not
+been discovered.

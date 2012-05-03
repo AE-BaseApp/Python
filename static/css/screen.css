@@ -25,7 +25,7 @@ body {background:#44ea77;}
 .blue {color:blue;}
 .green {color:green;}
 
-.bannerAd {width:468px;height:60px;}
+.bannerAd {width:468px;height:60px; margin-bottom: .5em;}
 
 .shouts {width:55%;}
 .message {border-left: 3px solid red; padding-left: .5em; margin-bottom:.5em; word-wrap: break-word; width:93%;}

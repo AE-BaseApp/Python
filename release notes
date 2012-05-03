@@ -1,0 +1,29 @@
+THIS SOFTWARE IS NOT PRODUCTION READY!
+--------------------------------------
+This software is currently in an early development stage.  It is not ready for
+use in a production environment without modifications.  Read the file ISSUES
+for a list of known issues.
+
+Version 1
+---------
+Version 1 of AE-Python is mainly a hello world version.  It sets up the 
+framework that we use to build a Scalable Base Application that contains User 
+Authentication, User Registration, Administrative Application, Ad Provider
+Framework, Geo Location Features, Social Site Integration (eg Twitter, Facebook)
+
+Version 1 could be looked at as a proof of concept.  We put together the basic
+pieces and they worked.
+
+Version 2
+---------
+Takes version one's basic pieces and takes the app to the next level.  We
+integrate an authentication system, create some basic application security,
+setup the basic framework for admin, and ad providers, as well as setup basic
+user registration.  Trusted users could begin taking a look at it for feedback,
+but it still has a long way to go before a Beta release.
+
+There still is no error handling and validation.  The datastore model doesn't
+use keys yet, and there is no caching support.  Security only prevents users
+from accessing the Admin Page but there is little to prevent malicious users.
+The app is still limited to the first 10 results, and users can't update or
+delete their posts.

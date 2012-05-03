@@ -1,0 +1,70 @@
+AE-BaseApp Goals:
+-----------------
+AE-BaseApp project and in this case AE-Python have three goals:
+  1.  To create a Base Application that the community can use to start their
+      projects with.
+  2.  To provide a learning tool platform for entry level developers to work
+      up to App Engine Engineers.
+  3.  To provide similar apps on different platforms to give performance
+      guidance, and a basic idea of how it affects costs.
+
+
+AE-BaseApp Philosophy
+---------------------
+This project follows the KISS approach (for those not old enough or aware KISS
+stands for Keep It Simple Silly actually should be Stupid but we're PC here).
+In some cases there are more complicated ways to do something that are better
+for certain use cases.  But the goals of this project are not to be an all 
+encompassing base application, but provide the framework for your next super app,
+as well as a learning tool for a platform that doesn't follow the conventions
+you learned in CIS105.  You can feel free to change any part of the system to
+meet your requirements.
+
+Guiding Principles of the AE-BaseApp Project
+    *  The KISS approach which as stated best by one of histories greatest minds
+       Albert Einstein "everything should be made as simple as possible, but no
+       simpler" or another great mind Antoine de Saint Exupéry's stated "It 
+       seems that perfection is reached not when there is nothing left to add, 
+       but when there is nothing left to take away."
+    *  RERO (in a Scoobie Doo voice) (means Release Early Release Often) Having
+       read "The Cathedral and the Bazaar" it follow that this is the second
+       most important principle.  Daily commits when the build isn't broke is
+       preferred to huge once it is finished commits.  This allows the community
+       to get a pulse on the project.  Find bugs before they are buried and 
+       have better context to assist if you have a question.
+    *  Ubuntu - Not the OS Distro but the principle.  We are all connected by 
+       sharing this planet, through our humanity, even our culture and society.
+       What we do affects the whole thus we need to show generosity for one
+       another, give a helping hand to each other, and be happy that someone is
+       capable.  Please read up on the principles if you are not familiar.
+       There are many philosophies/religions that mirror the principles of
+       Ubuntu, Buddhism, Christianity, Confusianism, no matter what it is called
+       the meaning is the same.
+    *  FOSS - The AE-BaseApp project is Free Open Source Software under the 
+       Apache 2 License.  That means you are free to browse the source, change
+       it, and share those changes.
+
+AE-BaseApp License
+------------------
+As mentioned in Philosophy AE-BaseApp is FOSS You should read the Apache 2 
+License in the file LICENSE-2.0.TXT to fully understand your rights.  There are
+other licenses used in this software that are listed in the LICENSE file.  You
+should read that file and see if it impacts your project.  By using this
+software you agree to be bound by the Licenses included in the file LICENSE.
+Additionally you agree to submit your modifications to the files under the same
+license as the original file.
+
+Release Notes
+-------------
+Release Notes are contained in the file "release notes" this contains important
+information about the project.
+
+Issues
+------
+Information regarding known problems or other issues are located in the file:
+ISSUES
+
+Contributing
+------------
+To contribute to AE-BaseApp check the COMMITTING file.  It contains information
+about the source repo, and requirements for contributing.

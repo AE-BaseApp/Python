@@ -1,0 +1,85 @@
+{% comment %}
+
+# Copyright 2010 - 2012 Mark Finch
+#
+# Licensed under the Apache License, Version 2.0 (the "License"); you may not use this 
+# file except in compliance with the License. You may obtain a copy of the License at 
+#
+# http://www.apache.org/licenses/LICENSE-2.0 
+#
+# Unless required by applicable law or agreed to in writing, software distributed under 
+# the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF 
+# ANY KIND, either express or implied. See the License for the specific language 
+# governing permissions and limitations under the License.
+
+{% endcomment %}
+
+{% include 'header.html' %}
+
+<body>
+  <div id="wrapper">
+  <div id="header">
+    <div class="right">
+      {% if app_vars.ad_provider == "AdSense" %}
+          {% include 'ad-header.html' %}
+      {% endif %}
+      {% if app_vars.ad_provider == "devMode" %}
+        <a href="http://spotlight4.us" title="SpotLight4.us"><img src="static/images/spotlight-234x60.png"></a>
+      {% endif %}  
+      <br/>
+      <div id="loginbox" class="right">
+        {% ifequal loggedin "Anonymous" %}
+          <a href="/login">New User</a> / <a href="/login">Login</a>
+        {% else %}
+          <a href="{{logout_url}}">Logout</a>
+        {% endifequal %}
+      </div> <!-- loginbox -->
+    </div>
+    <img src="static/images/megaphoneman.jpg" alt="Golden Man with MegaPhone"/>
+    <div class="centerme">
+      <h1 class="red">AE-Python</h1>
+      <small>Let the world know what's on your mind!</small>
+    </div> <!-- centerme -->
+  </div> <!-- header -->
+  <div class="divClear toprule"></div>
+
+  <div id="content">
+  <div class="shoutbox">
+    {% ifequal loggedin "Anonymous" %}
+      Please <a href="/login">Login</a> to post!
+    {% else %}
+      <form action="" method="post" accept-charset="utf-8">
+        Post Your Shout:<br/><textarea rows="5" cols="40" maxlength="140" showremain="limitOne" name="message" value="" id="message"></textarea><br/>
+        From:&nbsp;&nbsp;{{profile.user_name}}
+        <input type = "submit" value ="Shout It">&nbsp;Remaining:<span id="limitOne">--</span><br/>
+      </form>
+    {% endifequal %}
+  </div> <!-- shoutbox -->
+  
+  <div class="shouts">
+    {% for shout in shouts %}
+      <div class="message">
+        {{shout.message}} <br/>
+        <b>from
+        {% ifequal shout.who "" %}
+          Anonymous
+        {% else %}
+          {{shout.who}}
+        {% endifequal %} </b>
+        on {{shout.when}}
+      </div>
+      {% ifequal forloop.counter 1 %}
+        {% if app_vars.ad_provider == "AdSense" %}
+          {% include 'ad-banner.html' %}
+        {% endif %}
+        {% if app_vars.ad_provider == "devMode" %}
+          <div class="bannerAd">
+            <a href="http://spotlight4.us" title="SpotLight4.us"><img src="static/images/spotlight-468x60.png"></a>
+          </div>
+        {% endif %}  
+      {% endifequal %}
+    {% endfor %}
+  </div>  <!-- Shouts -->
+  </div> <!-- content -->
+
+{% include 'footer.html' %}

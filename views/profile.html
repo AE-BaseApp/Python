@@ -1,0 +1,41 @@
+{% comment %}
+
+# Copyright 2010 - 2012 Mark Finch
+#
+# Licensed under the Apache License, Version 2.0 (the "License"); you may not use this 
+# file except in compliance with the License. You may obtain a copy of the License at 
+#
+# http://www.apache.org/licenses/LICENSE-2.0 
+#
+# Unless required by applicable law or agreed to in writing, software distributed under 
+# the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF 
+# ANY KIND, either express or implied. See the License for the specific language 
+# governing permissions and limitations under the License.
+
+{% endcomment %}
+
+{% include 'header.html' %}
+
+<body>
+  <div id="wrapper">
+  <div id="header">
+    <img src="static/images/megaphoneman.jpg" alt="Golden Man with MegaPhone"/>
+    <div class="centerme">
+      <h1 class="red">AE-Python</h1>
+      <small>Let the world know what's on your mind!</small>
+    </div> <!-- centerme -->
+  </div> <!-- header -->
+  <div class="divClear toprule"></div>
+
+  <div id="newuser" class="left">
+    <h2 class="red">New User Registration</h2>
+    <form action="" method="post" accept-charset="utf-8">
+      User Name:&nbsp;<input type="text" name="user_name" value={% ifequal profile.user_name none %} {{user.nickname}} {% else %} {{profile.user_name}} {% endifequal %} /></br>
+      First Name:&nbsp;<input type="text" name="first_name" value={{profile.first_name}} /></br>
+      Last Name:&nbsp;<input type="text" name="last_name" value={{profile.last_name}} /></br>
+      E-Mail:&nbsp;<input type="text" name="email" value={% ifequal profile.email none %} {{user.email}} {% else %} {{profile.email}} {% endifequal %} /></br>
+      <input type = "submit" value ="Save">
+    </form>
+  </div> <!-- newuser -->
+
+{% include 'footer.html' %}
