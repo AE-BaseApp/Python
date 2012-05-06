@@ -28,17 +28,20 @@ class ProfileHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         uid = user.user_id()
-        profile = db.GqlQuery('SELECT * FROM UserProfile WHERE uid = :1', uid)
-        app_vars = db.GqlQuery('SELECT * FROM EnvVars')
+        profileq = db.GqlQuery('SELECT * FROM UserProfile WHERE uid = :1', uid)
+        app_varsq = db.GqlQuery('SELECT * FROM EnvVars')
 
         # If no profile send them to complete it otherwise route them back to home
-        if not profile.get():
+        if not profileq.get():
             values = {'user': user, 
-                      'profile': profile.get(), 
-                      'app_vars': app_vars,
+                      'profile': profileq.get(), 
+                      'app_vars': app_varsq,
                       'time_zones': pytz.common_timezones}
             self.response.out.write(template.render('views/profile.html', values))
         else:
+            profile = profileq.get()
+            setattr(profile, 'last_ip', self.request.remote_addr)
+            profile.put()
             self.redirect('/')
 
     def post(self):
@@ -49,6 +52,7 @@ class ProfileHandler(webapp2.RequestHandler):
                               first_name=self.request.get('first_name'),
                               last_name=self.request.get('last_name'),
                               email=self.request.get('email'),
-                              time_zone=self.request.get('time_zone'))
+                              time_zone=self.request.get('time_zone'),
+                              last_ip=self.request.remote_addr)
         profile.put()
         self.redirect('/')

@@ -16,11 +16,11 @@ from google.appengine.api import users
 from google.appengine.ext import db
 from google.appengine.ext.webapp import template
 
-#tz 
+#  tz 
 import pytz
 from pytz import timezone
 
-# Import Models
+#  Import Models
 from models.Shout import Shout
 from models.UserProfile import UserProfile
 from models.EnvVars import EnvVars
@@ -53,7 +53,7 @@ class HomeHandler(webapp2.RequestHandler):
                 i = shouts.index(posts)
                 shouts[i].when = shouts[i].when.replace(tzinfo=pytz.utc).astimezone(shout_time_zone)
             loggedin = "Anonymous"
-            values = {'shouts': shouts_querry, 'loggedin': loggedin,
+            values = {'shouts': shouts, 'loggedin': loggedin,
                       'logout_url': users.create_logout_url("/"),
                       'app_vars': app_vars}
         self.response.out.write(template.render('views/home.html', values))
