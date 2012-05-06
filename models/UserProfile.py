@@ -20,4 +20,5 @@ class UserProfile(db.Model):
     first_name = db.StringProperty(required=True)
     last_name = db.StringProperty(required=True)
     email = db.EmailProperty(required=True)
+    time_zone = db.StringProperty(required=True)
     since = db.DateTimeProperty(auto_now_add=True)

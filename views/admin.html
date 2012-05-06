@@ -45,6 +45,11 @@
         Ad-Provider:<br/>
         <input type = "radio" name = "adp" value = "AdSense" />AdSense</br>
         <input type = "radio" name = "adp" value = "devMode" />devMode</br>
+        Time Zone:&nbsp;<select name="default_tz">
+        {% for tz in time_zones %}
+            <option value="{{ tz }}"{% if tz == TIME_ZONE %} selected="selected"{% endif %}>{{ tz }}</option>
+        {% endfor %}
+      </select>
         <input type = "submit" value ="Save" /><br/>
       </form>
   </div> <!-- content -->

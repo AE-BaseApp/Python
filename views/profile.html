@@ -34,6 +34,11 @@
       First Name:&nbsp;<input type="text" name="first_name" value={{profile.first_name}} /></br>
       Last Name:&nbsp;<input type="text" name="last_name" value={{profile.last_name}} /></br>
       E-Mail:&nbsp;<input type="text" name="email" value={% ifequal profile.email none %} {{user.email}} {% else %} {{profile.email}} {% endifequal %} /></br>
+      Time Zone:&nbsp;<select name="time_zone">
+        {% for tz in time_zones %}
+            <option value="{{ tz }}"{% if tz == TIME_ZONE %} selected="selected"{% endif %}>{{ tz }}</option>
+        {% endfor %}
+      </select>
       <input type = "submit" value ="Save">
     </form>
   </div> <!-- newuser -->

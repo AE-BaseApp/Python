@@ -12,6 +12,7 @@
 
 #  Libraries
 import webapp2
+from pytz.gae import pytz
 from google.appengine.api import users
 from google.appengine.ext import db
 from google.appengine.ext.webapp import template
@@ -32,7 +33,10 @@ class ProfileHandler(webapp2.RequestHandler):
 
         # If no profile send them to complete it otherwise route them back to home
         if not profile.get():
-            values = {'user': user, 'profile': profile.get(), 'app_vars': app_vars}
+            values = {'user': user, 
+                      'profile': profile.get(), 
+                      'app_vars': app_vars,
+                      'time_zones': pytz.common_timezones}
             self.response.out.write(template.render('views/profile.html', values))
         else:
             self.redirect('/')
@@ -44,6 +48,7 @@ class ProfileHandler(webapp2.RequestHandler):
                               user_name=self.request.get('user_name'),
                               first_name=self.request.get('first_name'),
                               last_name=self.request.get('last_name'),
-                              email=self.request.get('email'))
+                              email=self.request.get('email'),
+                              time_zone=self.request.get('time_zone'))
         profile.put()
         self.redirect('/')

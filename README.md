@@ -38,11 +38,14 @@ Accomplished:
     * Basic Ad-Provider Framework
     * Basic Admin Framework
     * Basic Authentication Decorator
+  * Version 3
+    * Date/Time Conversion from UTC
+    * User Profile Time Zone Picker
+    * Admin Default Time Zone Selector
 
 Project Road Map:
 -----------------
   * Version 3
-    * Add Date/Time Conversion from UTC
     * Email Authentication
     * Add Internal Validation and Error Handling
     * Add Safe HTML to Shouts

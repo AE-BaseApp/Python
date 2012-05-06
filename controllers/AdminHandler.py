@@ -15,6 +15,7 @@ import webapp2
 from google.appengine.api import users
 from google.appengine.ext import db
 from google.appengine.ext.webapp import template
+import pytz
 
 # Import Models
 from models.EnvVars import EnvVars
@@ -26,17 +27,21 @@ class AdminHandler(webapp2.RequestHandler):
         if not users.is_current_user_admin():  # secure the page only admin can access
             self.redirect('/')
         app_vars = db.GqlQuery('SELECT * FROM EnvVars')
-        values = {'logout_url': users.create_logout_url("/"), 'app_vars': app_vars.get()}
+        values = {'logout_url': users.create_logout_url("/"), 
+                  'app_vars': app_vars.get(),
+                  'time_zones': pytz.common_timezones}
         self.response.out.write(template.render('views/admin.html', values))
 
     def post(self):
         app_vars = db.GqlQuery('SELECT * FROM EnvVars')
         if not app_vars.get():  # record does not exist yet create it
-            app_vars = EnvVars(ad_provider=self.request.get('adp'))
+            app_vars = EnvVars(ad_provider=self.request.get('adp'),
+                               default_tz=self.request.get('default_tz'))
             app_vars.put()
         else:  # record exists so update it
             record = app_vars.get()
             setattr(record, 'ad_provider', self.request.get('adp'))
+            setattr(record, 'default_tz', self.request.get('default_tz'))
             record.put()
         self.redirect('/admin')
 

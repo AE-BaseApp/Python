@@ -16,3 +16,4 @@ from google.appengine.ext import db
 #  Database Model
 class EnvVars(db.Model):
     ad_provider = db.StringProperty(required=True)
+    default_tz = db.StringProperty(required=True)

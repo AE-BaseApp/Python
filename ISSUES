@@ -25,6 +25,8 @@ As of Version 2 the following is a list of known issues:
      causes an error it will not be trapped and the software will crash.
   *  OpenID is only functioning on providers who have a login page.  Providers
      whom only authenticate via a URL are currently not supported.
+  *  Time Zones seem a mish mosh, need to update at least the first results to
+     disply the standard US Time Zones
 
 This is only a list of known issues.  There could be other issues that have not
 been discovered.
