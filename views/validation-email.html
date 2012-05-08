@@ -1,0 +1,32 @@
+{% autoescape on %}
+{% comment %}
+# Copyright 2010 - 2012 Mark Finch
+#
+# Licensed under the Apache License, Version 2.0 (the "License"); you may not use this 
+# file except in compliance with the License. You may obtain a copy of the License at 
+#
+# http://www.apache.org/licenses/LICENSE-2.0 
+#
+# Unless required by applicable law or agreed to in writing, software distributed under 
+# the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF 
+# ANY KIND, either express or implied. See the License for the specific language 
+# governing permissions and limitations under the License.
+{% endcomment %}
+<html>
+<body>
+  <div id="email_message">
+    <p>Dear {{first_name}},</p>
+    <p>AE-Python BaseApp would like to thank you for registering with us.  
+       Please click the link below to Verify your account.</p>
+    <p>{{validation_link}}</p>
+    <p>Thanks Again,</p>
+    <p>AE-Python BaseApp Team</p>
+    <p>PS  We look forward to seeing you again soon!</p>
+    <p>PSS If you didn't register with us we apologize for the inconvenience.  
+       Someone used your email address with their account.   Don't worry you
+       don't need to do anything.  If you don't validate the account they are 
+       disabled and can not post.</p>
+  </div>  <!-- email_message -->
+</body>
+</html>
+{% endautoescape %}

@@ -12,7 +12,6 @@
 # ANY KIND, either express or implied. See the License for the specific language 
 # governing permissions and limitations under the License.
 {% endcomment %}
-
 {% include 'header.html' %}
 <body>
   <div id="wrapper">
@@ -28,8 +27,6 @@
       <div id="loginbox" class="right">
         {% ifequal loggedin "Anonymous" %}
           <a href="/login">New User</a> / <a href="/login">Login</a>
-        {% else %}
-          <a href="{{logout_url}}">Logout</a>
         {% endifequal %}
       </div> <!-- loginbox -->
     </div>
@@ -41,44 +38,16 @@
   </div> <!-- header -->
   <div class="divClear toprule"></div>
 
-  <div id="content">
-  <div class="shoutbox">
-    {% ifequal loggedin "Anonymous" %}
-      Please <a href="/login">Login</a> to post!
-    {% else %}
-      <form action="" method="post" accept-charset="utf-8">
-        Post Your Shout:<br/><textarea rows="5" cols="40" maxlength="140" showremain="limitOne" name="message" value="" id="message"></textarea><br/>
-        From:&nbsp;&nbsp;{{profile.user_name}}
-        <input type = "submit" value ="Shout It">&nbsp;Remaining:<span id="limitOne">--</span><br/>
-      </form>
-    {% endifequal %}
-  </div> <!-- shoutbox -->
-  
-  <div class="shouts">
-    {% for shout in shouts %}
-      <div class="message">
-        {{shout.message|striptags}} <br/>
-        <b>from
-        {% ifequal shout.who "" %}
-          Anonymous
-        {% else %}
-          {{shout.who}}
-        {% endifequal %} </b>
-        on {{shout.when}}
-      </div>
-      {% ifequal forloop.counter 1 %}
-        {% if app_vars.ad_provider == "AdSense" %}
-          {% include 'ad-banner.html' %}
-        {% endif %}
-        {% if app_vars.ad_provider == "devMode" %}
-          <div class="bannerAd">
-            <a href="http://spotlight4.us" title="SpotLight4.us"><img src="static/images/spotlight-468x60.png"></a>
-          </div>
-        {% endif %}  
-      {% endifequal %}
-    {% endfor %}
-  </div>  <!-- Shouts -->
-  </div> <!-- content -->
+  <div id="ValidationError" class="left">
+    <h2 class="red">Validation Error:</h2>
+    <p>Your E-Mail Validation Code is invalid.  Double check that your email
+       software didn't mangle the URL.  You can try copy and pasting the full
+       URL if the email software has broken the link.</p>
+  </div>  <!-- ValidationError -->
 
 {% include 'footer.html' %}
+{% comment %}
+# TODO modify this file to add a form to input the code manually to catch the
+# case of mangled URL by email provider
+{% endcomment %}
 {% endautoescape %}

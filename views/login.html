@@ -1,5 +1,5 @@
+{% autoescape on %}
 {% comment %}
-
 # Copyright 2010 - 2012 Mark Finch
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this 
@@ -11,11 +11,9 @@
 # the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF 
 # ANY KIND, either express or implied. See the License for the specific language 
 # governing permissions and limitations under the License.
-
 {% endcomment %}
 
 {% include 'header.html' %}
-
 <body>
   <div id="wrapper">
   <div id="header">
@@ -31,8 +29,8 @@
     <h2 class="red">Login Method:</h2>
     <p><a href="{{login_url}}">Google Account Login</a></p>
     <p><img src="static/images/openid-icon.png">&nbsp;Or OpenID from:</p>
-    {% for pname, puri in plist %}
-      <a href={{puri}}>{{pname}}</a></br>
+    {% for provider_name, provider_uri in provider_list %}
+      <a href={{provider_uri}}>{{provider_name}}</a></br>
     {% endfor %}
   </div> <!-- loginbox -->
 
@@ -56,3 +54,4 @@
   </div>  <!-- newUserMsg -->
 
 {% include 'footer.html' %}
+{% endautoescape %}

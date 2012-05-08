@@ -16,7 +16,7 @@ from google.appengine.api import users
 from google.appengine.ext import db
 from google.appengine.ext.webapp import template
 
-#  tz 
+#  tz
 import pytz
 from pytz import timezone
 
@@ -37,7 +37,7 @@ class HomeHandler(webapp2.RequestHandler):
         shouts = shouts_querry.fetch(10, offset=0)
         if user:
             uid = user.user_id()
-            profileq = db.GqlQuery('SELECT * FROM UserProfile WHERE uid = :1', 
+            profileq = db.GqlQuery('SELECT * FROM UserProfile WHERE uid = :1',
                                    uid)
             profile = profileq.get()
             shout_time_zone = timezone(profile.time_zone)

@@ -12,15 +12,17 @@
 # ANY KIND, either express or implied. See the License for the specific language 
 # governing permissions and limitations under the License.
 {% endcomment %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Give A Shout</title>
-  <meta name="description" content="A shout box to tell the world what is on your mind!" />
-  <link rel="stylesheet" media="screen" type="text/css" href="static/css/screen.css" />
-  <link rel="shortcut icon" href="static/images/favicon.ico" type="image/x-icon" /> 
-  <script type="text/javascript" src="/static/js/behaviour.js"></script>
-  <script type="text/javascript" src="/static/js/textarea_maxlen.js"></script>
-</head>
+Dear {{first_name}},
+
+AE-Python BaseApp would like to thank you for registering with us.  Please click the link below to Verify your account.
+
+{{validation_link}}
+
+Thanks Again,
+
+AE-Python BaseApp Team
+
+PS  We look forward to seeing you again soon!
+
+PSS If you didn't register with us we apologize for the inconvenience.  Someone used your email address with their account.   Don't worry you don't need to do anything.  If you don't validate the account they are disabled and can not post.
 {% endautoescape %}

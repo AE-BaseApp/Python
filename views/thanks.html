@@ -12,8 +12,17 @@
 # ANY KIND, either express or implied. See the License for the specific language 
 # governing permissions and limitations under the License.
 {% endcomment %}
-
-{% include 'header.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" http-equiv="Refresh" content="60;url=http://ae-python.appspot.com" />
+  <title>Give A Shout</title>
+  <meta name="description" content="A shout box to tell the world what is on your mind!" />
+  <link rel="stylesheet" media="screen" type="text/css" href="static/css/screen.css" />
+  <link rel="shortcut icon" href="static/images/favicon.ico" type="image/x-icon" /> 
+  <script type="text/javascript" src="/static/js/behaviour.js"></script>
+  <script type="text/javascript" src="/static/js/textarea_maxlen.js"></script>
+</head>
 <body>
   <div id="wrapper">
   <div id="header">
@@ -41,44 +50,13 @@
   </div> <!-- header -->
   <div class="divClear toprule"></div>
 
-  <div id="content">
-  <div class="shoutbox">
-    {% ifequal loggedin "Anonymous" %}
-      Please <a href="/login">Login</a> to post!
-    {% else %}
-      <form action="" method="post" accept-charset="utf-8">
-        Post Your Shout:<br/><textarea rows="5" cols="40" maxlength="140" showremain="limitOne" name="message" value="" id="message"></textarea><br/>
-        From:&nbsp;&nbsp;{{profile.user_name}}
-        <input type = "submit" value ="Shout It">&nbsp;Remaining:<span id="limitOne">--</span><br/>
-      </form>
-    {% endifequal %}
-  </div> <!-- shoutbox -->
-  
-  <div class="shouts">
-    {% for shout in shouts %}
-      <div class="message">
-        {{shout.message|striptags}} <br/>
-        <b>from
-        {% ifequal shout.who "" %}
-          Anonymous
-        {% else %}
-          {{shout.who}}
-        {% endifequal %} </b>
-        on {{shout.when}}
-      </div>
-      {% ifequal forloop.counter 1 %}
-        {% if app_vars.ad_provider == "AdSense" %}
-          {% include 'ad-banner.html' %}
-        {% endif %}
-        {% if app_vars.ad_provider == "devMode" %}
-          <div class="bannerAd">
-            <a href="http://spotlight4.us" title="SpotLight4.us"><img src="static/images/spotlight-468x60.png"></a>
-          </div>
-        {% endif %}  
-      {% endifequal %}
-    {% endfor %}
-  </div>  <!-- Shouts -->
-  </div> <!-- content -->
+  <div id="Thanks" class="left">
+    <h2 class="red">Thanks! {{profile.first_name}}</h2>
+    <p>Your E-Mail Validation Code is valid.  All of us at AE-BaseApp Python
+       appreciate you taking the time to validate your account.  Click
+       <a href="/">here</a> to return to the home page.  This page will
+       automatically redirect you back to the home page after 1 min.</p>
+  </div>  <!-- ValidationError -->
 
 {% include 'footer.html' %}
 {% endautoescape %}

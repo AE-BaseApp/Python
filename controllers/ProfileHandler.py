@@ -17,9 +17,16 @@ from google.appengine.api import users
 from google.appengine.ext import db
 from google.appengine.ext.webapp import template
 
-# Import Models
+#  Email Libraries
+from google.appengine.api import mail
+
+#  Validation Libraries
+import uuid
+
+#  Import Models
 from models.UserProfile import UserProfile
 from models.EnvVars import EnvVars
+from models.Validate import Validate
 
 
 #  Login page Request Handler Class
@@ -33,8 +40,8 @@ class ProfileHandler(webapp2.RequestHandler):
 
         # If no profile send them to complete it otherwise route them back to home
         if not profileq.get():
-            values = {'user': user, 
-                      'profile': profileq.get(), 
+            values = {'user': user,
+                      'profile': profileq.get(),
                       'app_vars': app_varsq,
                       'time_zones': pytz.common_timezones}
             self.response.out.write(template.render('views/profile.html', values))
@@ -47,12 +54,31 @@ class ProfileHandler(webapp2.RequestHandler):
     def post(self):
         user = users.get_current_user()
         cid = user.user_id()
+
+        #  Store the Profile
         profile = UserProfile(uid=cid,
                               user_name=self.request.get('user_name'),
                               first_name=self.request.get('first_name'),
                               last_name=self.request.get('last_name'),
                               email=self.request.get('email'),
                               time_zone=self.request.get('time_zone'),
-                              last_ip=self.request.remote_addr)
+                              last_ip=self.request.remote_addr,
+                              validated=False)
         profile.put()
+
+        #  Generate Validation Code and Send out Validation Email
+        validation_code = str(uuid.uuid4())
+        validation_link = "http://ae-python.appspot.com/verify?" + validation_code
+        email_values = {'first_name': self.request.get('first_name'),
+                        'validation_link': validation_link}
+        message = mail.EmailMessage(sender="AE-BaseApp <verify@ae-python.appspotmail.com>",
+                                    subject="AE-BaseApp Account Verification")
+        message.to = self.request.get('email')
+        message.body = template.render('views/validation-email.txt', email_values)
+        message.html = template.render('views/validation-email.html', email_values)
+        message.send()
+        #  Store Validation Information in Datastore
+        validate = Validate(uid=cid,
+                             validation_code=validation_code)
+        validate.put()
         self.redirect('/')

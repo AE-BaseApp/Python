@@ -27,3 +27,19 @@ use keys yet, and there is no caching support.  Security only prevents users
 from accessing the Admin Page but there is little to prevent malicious users.
 The app is still limited to the first 10 results, and users can't update or
 delete their posts.
+
+Version 3
+---------
+Somehow Git became messed up and the Version 2 branch didn't show up on Github.
+To make it worse no archive was created so the system is currently left with
+only the main trunk which is at Version 3.
+
+In Version 3 the application is starting to come together.  Some code still is
+very rudimentary, but the application is starting to take shape and most of the
+front side features are at a point for Proof of Concept Review.  The controller
+is too fat and is violating the seperation of concerns priciple.  That will be
+dealt with in version 4.  While this is by design in order to demonstrate it for
+the tutorial, it still is not something I like seeing.  I put the Time Zone
+functionality together and started dealing with errors.  All in all I'm pleased
+with the progress and can't wait to get get version 4 finished to clean up the
+MVC design pattern.

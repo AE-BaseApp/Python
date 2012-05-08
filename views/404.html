@@ -12,15 +12,24 @@
 # ANY KIND, either express or implied. See the License for the specific language 
 # governing permissions and limitations under the License.
 {% endcomment %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Give A Shout</title>
-  <meta name="description" content="A shout box to tell the world what is on your mind!" />
-  <link rel="stylesheet" media="screen" type="text/css" href="static/css/screen.css" />
-  <link rel="shortcut icon" href="static/images/favicon.ico" type="image/x-icon" /> 
-  <script type="text/javascript" src="/static/js/behaviour.js"></script>
-  <script type="text/javascript" src="/static/js/textarea_maxlen.js"></script>
-</head>
+{% include 'header.html' %}
+
+<body>
+  <div id="wrapper">
+  <div id="header">
+    <img src="static/images/megaphoneman.jpg" alt="Golden Man with MegaPhone"/>
+    <div class="centerme">
+      <h1 class="red">AE-Python</h1>
+      <small>Let the world know what's on your mind!</small>
+    </div> <!-- centerme -->
+  </div> <!-- header -->
+  <div class="divClear toprule"></div>
+
+  <div id="404Error" class="left">
+    <h2 class="red">Ooops! We encountered a 404 error!</h2>
+    <p>We could not find the URL you requested.  Please check the URL and try
+       again.</p>
+  </div>  <!-- 404Error -->
+
+{% include 'footer.html' %}
 {% endautoescape %}

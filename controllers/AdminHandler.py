@@ -27,7 +27,7 @@ class AdminHandler(webapp2.RequestHandler):
         if not users.is_current_user_admin():  # secure the page only admin can access
             self.redirect('/')
         app_vars = db.GqlQuery('SELECT * FROM EnvVars')
-        values = {'logout_url': users.create_logout_url("/"), 
+        values = {'logout_url': users.create_logout_url("/"),
                   'app_vars': app_vars.get(),
                   'time_zones': pytz.common_timezones}
         self.response.out.write(template.render('views/admin.html', values))
@@ -44,5 +44,3 @@ class AdminHandler(webapp2.RequestHandler):
             setattr(record, 'default_tz', self.request.get('default_tz'))
             record.put()
         self.redirect('/admin')
-
-# try http://stackoverflow.com/questions/5066357/update-app-engine-entity

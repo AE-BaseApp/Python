@@ -10,17 +10,14 @@
 #  ANY KIND, either express or implied. See the License for the specific language
 #  governing permissions and limitations under the License.
 
-from google.appengine.ext import db
+#  Libraries
+import logging
+import email
+from google.appengine.api import mail
+from google.appengine.ext.webapp.mail_handlers import InboundMailHandler
 
 
-#  Database Model
-class UserProfile(db.Model):
-    uid = db.StringProperty(required=True)
-    user_name = db.StringProperty(required=True)
-    first_name = db.StringProperty(required=True)
-    last_name = db.StringProperty(required=True)
-    email = db.EmailProperty(required=True)
-    time_zone = db.StringProperty(required=True)
-    last_ip = db.StringProperty(required=True)
-    since = db.DateTimeProperty(auto_now_add=True)
-    validated = db.BooleanProperty(required=True)
+#  Login page Request Handler Class
+class VerifyHandler(InboundMailHandler):
+    def receive(self, mail_message):
+        logging.info("Received a message from:" + mail_message.sender)

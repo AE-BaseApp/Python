@@ -31,15 +31,16 @@ class LoginHandler(webapp2.RequestHandler):
 
     def get(self):
         user = users.get_current_user()
-        plist = []  # Local Provider List
+        provider_list = []
         if user:
             first_name = user.nickname()
         else:
             first_name = "Anonymous"
 
         for name, uri in providers.items():
-            plist.append((name, users.create_login_url(dest_url='/profile',
+            provider_list.append((name, users.create_login_url(dest_url='/profile',
                           federated_identity=uri)))
 
-        values = {'login_url': users.create_login_url("/profile"), 'plist': plist}
+        values = {'login_url': users.create_login_url("/profile"),
+                  'provider_list': provider_list}
         self.response.out.write(template.render('views/login.html', values))

@@ -42,27 +42,38 @@ Accomplished:
     * Date/Time Conversion from UTC
     * User Profile Time Zone Picker
     * Admin Default Time Zone Selector
+    * Store User IP from Headers
+    * Email Validation
+    * Strip Shouts to remove formating and scripts
+    * Error Pages (eg 404...)
 
 Project Road Map:
 -----------------
-  * Version 3
-    * Email Authentication
-    * Add Internal Validation and Error Handling
-    * Add Safe HTML to Shouts
-    * Store User IP from Headers
   * Version 4
+    * Update Blueprint
     * db.Model Upgrades
-    * Add update and delete
-    * Error Pages (eg 404...)
+    * Add update and delete functionality
+    * Add Internal Validation and Error Handling
     * JavaScript form validation
+    * Page Security
   * Version 5
     * Shout Navigation
+    * Add OpenID URL based Authentication
     * Add OAuth
     * Add Facebook Connect 
     * Add Avatars
   * Planned Features
+    * Update model to key based
+    * Setup Memcahce
+    * Add MarkDown or similar functionality
+    * Cron job for cleaning profiles and validate data
+    * Email Validation Manual Entery Form 
+    * Enable User Update and Delete Functionality
+    * Search (by user, by content, by date)
     * Robust Admin Module
     * Geo Location
+    * Add From Location
+    * Add MiniMap popout
     * Integrate with Twitter / Facebook / ...
     * Rails style Flash Notice / Warning
     * Many many more!!!
@@ -71,7 +82,9 @@ Application Stack:
 ------------------
   * Google App Engine Python
   * Google webapp2 Framework
+  * Django Forms
   * Blueprint CSS Framework
+  * PyTZ Time Zone Framework
 
 
 Issues:
