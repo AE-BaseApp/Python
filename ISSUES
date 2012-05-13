@@ -6,7 +6,7 @@ so you are free to modify the code.  Those modifications could result in issues
 that compromise the software.  You should have a Qualified Engineer go over this
 software as well as your changes before deployment.
 
-As of Version 3 the following is a list of known issues:
+As of Version 4-Initial the following is a list of known issues:
 
   *  No Page Level Security, allows users to bypass the verification step and
      still use the service.
@@ -69,10 +69,10 @@ As of Version 3 the following is a list of known issues:
 
      Resolution:  Support currently scheduled to be added in version 5
 
-  *  Time Zones seem a mish mosh, need to update at least the first results to
-     display the standard US Time Zones
+  *  Favicon not displaying in production.  
 
-     Resolution:  Site and Per User Time Zone ability was added in Version 3.
+     Resolution:  Displays in development but not on production.  Probably
+     something in app.yaml
 
 This is only a list of known issues.  There could be other issues that have not
 been discovered.

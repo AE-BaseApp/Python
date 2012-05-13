@@ -1,19 +1,23 @@
 #  Copyright 2010 - 2012 Mark Finch
 #
-#  Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
-#  file except in compliance with the License. You may obtain a copy of the License at
+#  Licensed under the Apache License, Version 2.0 (the "License"); you may not
+#  use this file except in compliance with the License. You may obtain a copy
+#  of the License at
 #
 #  http://www.apache.org/licenses/LICENSE-2.0
 #
-#  Unless required by applicable law or agreed to in writing, software distributed under
-#  the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
-#  ANY KIND, either express or implied. See the License for the specific language
-#  governing permissions and limitations under the License.
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+#  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+#  License for the specific language governing permissions and limitations
+#  under the License.
 
 #  Libraries
 import webapp2
 from google.appengine.api import users
-from google.appengine.ext.webapp import template
+
+# Import Views
+from views.login_view import login_view
 
 #  OpenID providers
 providers = {
@@ -43,4 +47,4 @@ class LoginHandler(webapp2.RequestHandler):
 
         values = {'login_url': users.create_login_url("/profile"),
                   'provider_list': provider_list}
-        self.response.out.write(template.render('views/login.html', values))
+        login_view(self, values)

@@ -33,34 +33,44 @@ app = webapp2.WSGIApplication([
     (r'/_ah/mail/verify@.*ae-python\.appspotmail\.com', VerifyHandler),
     (r'/admin', AdminHandler)
 ], debug=True)
-#  Set debug=False on production
+#  TODO: Set debug=False on production
+
+
+def handle_401(request, response, exception):
+    logging.exception(exception)
+    values = {}
+    response.out.write(template.render('templates/401.html', values))
+    response.set_status(401)
+
+
+def handle_403(request, response, exception):
+    logging.exception(exception)
+    values = {}
+    response.out.write(template.render('templates/403.html', values))
+    response.set_status(403)
+
 
 def handle_404(request, response, exception):
     logging.exception(exception)
     values = {}
-    response.out.write(template.render('views/404.html', values))
+    response.out.write(template.render('templates/404.html', values))
     response.set_status(404)
 
 
 def handle_500(request, response, exception):
     logging.exception(exception)
     values = {}
-    response.out.write(template.render('views/500.html', values))
+    response.out.write(template.render('templates/500.html', values))
     response.set_status(500)
 
+app.error_handlers[401] = handle_401
+app.error_handlers[403] = handle_403
 app.error_handlers[404] = handle_404
 app.error_handlers[500] = handle_500
 #  Add other error pages that you need such as:
 #      301 Moved Permanently
 #      303 See Other
 #      400 Bad Request
-#      401 Unauthorized
-#      403 Forbidden
 #      408 Request Timeout
 #      503 Service Unavailable
 # http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
-
-
-#  Run the application
-def main():
-    app.run()

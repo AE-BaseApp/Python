@@ -37,9 +37,33 @@ only the main trunk which is at Version 3.
 In Version 3 the application is starting to come together.  Some code still is
 very rudimentary, but the application is starting to take shape and most of the
 front side features are at a point for Proof of Concept Review.  The controller
-is too fat and is violating the seperation of concerns priciple.  That will be
+is too fat and is violating the separation of concerns principle.  That will be
 dealt with in version 4.  While this is by design in order to demonstrate it for
 the tutorial, it still is not something I like seeing.  I put the Time Zone
 functionality together and started dealing with errors.  All in all I'm pleased
 with the progress and can't wait to get get version 4 finished to clean up the
 MVC design pattern.
+
+Version 4
+---------
+After hours of trouble shooting I managed to figure out what happened to
+Version 2.  I am not entirely certain but somehow there were 2 references to
+version2 in git.  That part isn't clear why.  But when the command to push it
+was issued it errored out and didn't happen.  I ended up pulling the code using
+the main branch commit to GitHub, renaming the version2 branch to VERSION2.
+Then pushing it again.  That fixed it and while I was at it I made archives and
+uploaded those as well.
+
+Updating Blueprint was a bad idea they broke backward compatibility at some
+point.  Restored Blueprint 0.5.  If you are starting a new design it would be
+worth updating but until I see the site broken on a browser I will leave it.
+
+Swapped out PYTZ for GAEPYTZ.  This should provide better performance on the
+home page where replacing the UTC time with Local time calls on PYTZ once for
+every shout.
+
+Transition to MVC Design Pattern was completed.  Models were updated to move
+the database code from the Controllers to Models.  The templates were moved
+from views to templates, and views were created moving the disply logic out of
+the controllers.
+

@@ -18,3 +18,7 @@ class Validate(db.Model):
     uid = db.StringProperty(required=True)
     validation_code = db.StringProperty(required=True)
     validation_time = db.DateTimeProperty(auto_now_add=True)
+
+def save_validation_code(self, uid, validation_code):
+    record = Validate(uid = uid, validation_code = validation_code)
+    record.put()

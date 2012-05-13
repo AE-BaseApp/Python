@@ -5,20 +5,18 @@ AE Python BaseApp
 ---------------
 
 [AE-BaseApp](http://AE-BaseApp.appspot.com) is a multi-platform app-engine base-app created by 
-Mark Finch to assist developers looking to build their first applications 
-leveraging Google's Cloud Infrastructure. AE-Python is loosely based 
-on the video from Brett Slatkin introducing Google App Engine at 
+[Mark Finch](http://markfinch.info) to assist developers looking to build their first applications 
+leveraging [Google's Cloud Infrastructure](http://developers.google.com/appengine/). AE-Python is loosely based 
+on the video from [Brett Slatkin](http://www.google.com/profiles/bslatkin) introducing Google App Engine at 
 [Google IO 2008](http://sites.google.com/site/io/).
 
 The AE-Python version of AE-BaseApp uses the Python Language along with 
 the webapp2 Framework to provide a simple application base to launch new Google
 App Engine Applications from.
 
-Features of version 2 include AdSense integration, examples of how to 
+Features of version 4 include ad provider integration, examples of how to 
 use basic templates, access the datastore to create and read, user 
 authentication & registration.
-
-NOTE: Due to App Engine requirements version numbers will all be integers.
 
 Accomplished:
 -------------
@@ -43,19 +41,22 @@ Accomplished:
     * User Profile Time Zone Picker
     * Admin Default Time Zone Selector
     * Store User IP from Headers
-    * Email Validation
+    * Email Account Validation
     * Strip Shouts to remove formating and scripts
     * Error Pages (eg 404...)
+  * Version 4
+    * db.Model Upgrades
+    * Transition to MVC Design Pattern
+    * Swapped PYTZ for GAEPYTZ
+    * Add Internal Validation and Error Handling (In Progress)
 
 Project Road Map:
 -----------------
   * Version 4
-    * Update Blueprint
-    * db.Model Upgrades
-    * Add update and delete functionality
-    * Add Internal Validation and Error Handling
+    * Add Shout update and delete functionality
     * JavaScript form validation
     * Page Security
+    * Application Logging
   * Version 5
     * Shout Navigation
     * Add OpenID URL based Authentication
@@ -63,6 +64,7 @@ Project Road Map:
     * Add Facebook Connect 
     * Add Avatars
   * Planned Features
+    * Add Docstrings to source files (PEP 257)
     * Update model to key based
     * Setup Memcahce
     * Add MarkDown or similar functionality
@@ -90,17 +92,20 @@ Application Stack:
 Issues:
 -------
   * THIS APP IS NOT PRODUCTION READY!!!
-  * App currently implicitly trusts user input (a really big NO NO for Production)
-  * There is no validation and error handling (Another big NO NO)
-  * OpenID only supports providers that use an authentication page.  Providers
-    whom use a URL for login are currently not supported.
-  * Some of the code is not the best way to accomplish a task.  This is on 
-    purpose as this app is also serving as an example for an online class I'm 
-    creating.  Thats why there are small incremental versions.
+  * Read the file ISSUES to see a list of known issues and resolutions.
 
 No Warranties:
 --------------
 There are no warranties expressed or implied.  Use at your own RISK!
+
+Setup:
+------
+  * Edit the app.yaml file to change the application name.
+  * Run the dev server.
+  * You will be greeted with a 500 Error, go to the `/login` page and login/create an admin user.
+  * Visit `/admin` page to setup the default environment variables.
+  * Go back to the home page and double check everything is working.
+  * Hack away, but remember you break it you bought it!  *wink* [1][1]
 
 License:
 --------
@@ -108,3 +113,6 @@ AE-Python BaseApp source code is licensed under the [Apache 2.0 License](http://
 
 Please check the file LICENSE to see other licenses that impact this project.
 
+Notes:
+------
+*  [1] The corollary is you got what you paid for!
