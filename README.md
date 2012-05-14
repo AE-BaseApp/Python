@@ -84,7 +84,7 @@ Application Stack:
 ------------------
   * Google App Engine Python
   * Google webapp2 Framework
-  * Django Forms
+  * Django Templates
   * Blueprint CSS Framework
   * PyTZ Time Zone Framework
 
