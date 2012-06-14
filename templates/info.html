@@ -1,0 +1,48 @@
+{% autoescape on %}
+{% comment %}
+#  Copyright 2010 - 2012 Mark Finch
+#
+#  Licensed under the Apache License, Version 2.0 (the "License"); you may not
+#  use this file except in compliance with the License. You may obtain a copy
+#  of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+#  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+#  License for the specific language governing permissions and limitations
+#  under the License.
+{% endcomment %}
+{% include 'header.html' %}
+<body>
+  <div id="wrapper">
+  <div id="header">
+    <div class="right">
+      <div id="loginbox" class="right">
+          <a href="{{logout_url}}">Logout</a>
+      </div> <!-- loginbox -->
+    </div>
+    <img src="/static/images/megaphoneman.jpg" alt="Golden Man with MegaPhone"/>
+    <div class="centerme">
+      <h1 class="red">INFO MAIL ADMIN AREA</h1>
+      <small>Don't forget to save!</small>
+    </div> <!-- centerme -->
+  </div> <!-- header -->
+  <div class="divClear toprule"></div>
+
+  <div id="content">
+    {% for message in messages %}
+      <div class="message mb1em">
+        <img src="{{message.gravatar_url}}" class="mr1em" />
+        <b>From:&nbsp;{{message.sender}}<br />
+        {{message.received_on}}<br />
+        Subject:&nbsp;{{message.subject}}</b><br />
+        {{message.body_txt|truncate:200}}<br />
+        <a href="/infomsg?{{message.key}}">Read Message</a>&nbsp;
+      </div> <!-- messages -->
+    {% endfor %}
+  </div> <!-- content -->
+
+{% include 'footer.html' %}
+{% endautoescape %}

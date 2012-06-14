@@ -45,16 +45,21 @@ Accomplished:
     * Strip Shouts to remove formating and scripts
     * Error Pages (eg 404...)
   * Version 4
+    * Swapped PYTZ for GAEPYTZ
     * db.Model Upgrades
     * Transition to MVC Design Pattern
-    * Swapped PYTZ for GAEPYTZ
-    * Add Internal Validation and Error Handling (In Progress)
+    * Changed the default time zone in profile.html to Los Angeles
+    * Added Info Email Address and Processing
+    * Added Gravatars to Email and Shouts
+    * Added Django Template Filters
+    * Updated env_vars.py to set a default ad_provider and default_tz
+    * Basic JavaScript form validation
 
 Project Road Map:
 -----------------
   * Version 4
+    * Add Internal Validation and Error Handling (In Progress)
     * Add Shout update and delete functionality
-    * JavaScript form validation
     * Page Security
     * Application Logging
   * Version 5
@@ -64,6 +69,7 @@ Project Road Map:
     * Add Facebook Connect 
     * Add Avatars
   * Planned Features
+    * Compare Performance of Lazy Handlers
     * Add Docstrings to source files (PEP 257)
     * Update model to key based
     * Setup Memcahce

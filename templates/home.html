@@ -27,15 +27,15 @@
       <br/>
       <div id="loginbox" class="right">
         {% ifequal loggedin "Anonymous" %}
-          <a href="/login">New User</a> / <a href="/login">Login</a>
+          <a href="/login">New User</a> / <a href="{{login_url}}">Login</a>
         {% else %}
           <a href="{{logout_url}}">Logout</a>
         {% endifequal %}
       </div> <!-- loginbox -->
     </div>
     <img src="static/images/megaphoneman.jpg" alt="Golden Man with MegaPhone"/>
-    <div class="centerme">
-      <h1 class="red">AE-Python</h1>
+    <div class="">
+      <h1 class="red">AE-BaseApp/Python</h1>
       <small>Let the world know what's on your mind!</small>
     </div> <!-- centerme -->
   </div> <!-- header -->
@@ -46,32 +46,37 @@
     {% ifequal loggedin "Anonymous" %}
       Please <a href="/login">Login</a> to post!
     {% else %}
-      <form action="" method="post" accept-charset="utf-8">
+      <form name="shout_msg" action="/" method="post" accept-charset="utf-8" onsubmit="return validateForm()">
         Post Your Shout:<br/><textarea rows="5" cols="40" maxlength="140" showremain="limitOne" name="message" value="" id="message"></textarea><br/>
         From:&nbsp;&nbsp;{{profile.user_name}}
         <input type = "submit" value ="Shout It">&nbsp;Remaining:<span id="limitOne">--</span><br/>
       </form>
+      <script type="text/javascript">
+        function validateForm() {
+          var msg=document.forms["shout_msg"]["message"].value;
+          if (msg==null || msg=="") {
+            alert("Please enter a message.");
+          return false;
+          }
+        } // validateForm
+      </script>
+
     {% endifequal %}
   </div> <!-- shoutbox -->
   
   <div class="shouts">
     {% for shout in shouts %}
-      <div class="message">
-        {{shout.message|striptags}} <br/>
-        <b>from
-        {% ifequal shout.who "" %}
-          Anonymous
-        {% else %}
-          {{shout.who}}
-        {% endifequal %} </b>
-        on {{shout.when}}
+      <div class="message left">
+        <img src="{{shout.avatar}}" alt="User Avatar" class="mr1em left" />
+        {{shout.message}} <br/>
+        <b>from {{shout.who}}</b> on {{shout.when}}
       </div>
       {% ifequal forloop.counter 1 %}
         {% if app_vars.ad_provider == "AdSense" %}
           {% include 'ad-banner.html' %}
         {% endif %}
         {% if app_vars.ad_provider == "devMode" %}
-          <div class="bannerAd">
+          <div class="bannerAd left">
             <a href="http://spotlight4.us" title="SpotLight4.us"><img src="static/images/spotlight-468x60.png"></a>
           </div>
         {% endif %}  
@@ -79,6 +84,7 @@
     {% endfor %}
   </div>  <!-- Shouts -->
   </div> <!-- content -->
+
 
 {% include 'footer.html' %}
 {% endautoescape %}

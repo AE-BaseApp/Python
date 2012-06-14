@@ -47,6 +47,7 @@ class HomeHandler(webapp2.RequestHandler):
             shout_list = shouts(self, shout_tz)
             loggedin = "Anonymous"
             values = {'shouts': shout_list, 'loggedin': loggedin,
+                      'login_url': webapp2.uri_for('login', _scheme='https'),
                       'logout_url': users.create_logout_url("/"),
                       'app_vars': env_vars()}
         home_view(self, values)
@@ -58,5 +59,6 @@ class HomeHandler(webapp2.RequestHandler):
         post_shout(self, 
                    message=self.request.get('message'), 
                    who=crud.profile().user_name, 
+                   avatar=crud.profile().avatar,
                    uid=uid)
         self.redirect('/')

@@ -26,6 +26,7 @@ class UserProfile(db.Model):
     first_name = db.StringProperty(required=True)
     last_name = db.StringProperty(required=True)
     email = db.EmailProperty(required=True)
+    avatar = db.StringProperty()
     time_zone = db.StringProperty(required=True)
     last_ip = db.StringProperty(required=True)
     since = db.DateTimeProperty(auto_now_add=True)
@@ -47,7 +48,7 @@ class ProfileCrud:
         return db.GqlQuery('SELECT * FROM UserProfile WHERE uid = :1',
                            self.cid).get()
 
-    def update_profile(self, user_name, first_name, last_name, email,
+    def update_profile(self, user_name, first_name, last_name, email, avatar,
                        time_zone, last_ip):
         #  Store the Profile
         profile = db.GqlQuery('SELECT * FROM UserProfile WHERE uid = :1',
@@ -58,6 +59,7 @@ class ProfileCrud:
                                       first_name=first_name,
                                       last_name=last_name,
                                       email=email,
+                                      avatar=avatar,
                                       time_zone=time_zone,
                                       last_ip=last_ip,
                                       validated=False)
@@ -66,6 +68,7 @@ class ProfileCrud:
             setattr(profile, "first_name", first_name)
             setattr(profile, "last_name", last_name)
             setattr(profile, "email", email)
+            setattr(profile, "avatar", avatar)
             setattr(profile, "time_zone", time_zone)
             setattr(profile, "last_ip", last_ip)
             profile.put()

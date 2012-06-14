@@ -2,30 +2,73 @@ application: ae-python
 version: 4
 runtime: python27
 api_version: 1
+default_expiration: "1d"
 threadsafe: yes
 
-libraries:
-- name: webapp2
-  version: latest
-
 handlers:
+### Static Routes
+- url: /static/images/favicon\.ico
+  static_files: static/images/favicon.ico
+  upload: static/images/favicon\.ico
+  mime_type: image/vnd.microsoft.icon
+  expiration: "180d"
+
 - url: /favicon\.ico
   static_files: static/images/favicon.ico
-  upload: favicon\.ico
+  upload: static/images/favicon\.ico
   mime_type: image/vnd.microsoft.icon
+  expiration: "180d"
+
+- url: /robots.txt
+  static_files: robots.txt
+  upload: robots.txt
 
 - url: /(.*\.(gif|png|jpg))
   static_files: \1
   upload: (.*\.(gif|png|jpg))
+  expiration: "180d"
 
 - url: /static/css
   static_dir: static/css
+  expiration: "180d"
 
 - url: /static/js
   static_dir: static/js
+  expiration: "180d"
+
+# Google Web Master Verification
+- url: /google4022cd472d983097.html
+  static_files: static/html/google4022cd472d983097.html
+  upload: static/html/google4022cd472d983097.html
+
+### Dyanamic Routes
+- url: /admin
+  script: main.app
+  secure: always
+
+- url: /infoadmin
+  script: main.app
+  secure: always
+
+- url: /infomsg
+  script: main.app
+  secure: always
+
+- url: /login
+  script: main.app
+  secure: always
+
+- url: /profile
+  script: main.app
+  secure: always
 
 - url: /.*
   script: main.app
+  secure: optional
 
 inbound_services:
 - mail
+
+libraries:
+- name: webapp2
+  version: latest

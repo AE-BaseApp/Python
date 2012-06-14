@@ -19,6 +19,10 @@ from google.appengine.api import users
 #  Validation Libraries
 import uuid
 
+#  Gravatar Libraries
+import urllib
+import hashlib
+
 #  Import Models
 from models.UserProfile import ProfileCrud
 from models.EnvVars import env_vars
@@ -56,11 +60,21 @@ class ProfileHandler(webapp2.RequestHandler):
         uid = user.user_id()
         crud = ProfileCrud(uid)
 
+        # Create Gravatar URL - http://blog.gravatar.com/2008/01/17/gravatars-in-python-25/
+        default_avatar = "https://ae-baseapp.appspot.com/static/images/avatar.png"
+        avatar_size = 64
+        avatar_email = self.request.get('email')
+        gravatar_url = "https://secure.gravatar.com/avatar.php?"
+        gravatar_url += urllib.urlencode({'gravatar_id':hashlib.md5(
+            avatar_email.lower()).hexdigest(), 'default':default_avatar,
+            'size':str(avatar_size), 'r':'pg'})
+
         # Create or Update the profile
         crud.update_profile(user_name=self.request.get('user_name'),
                             first_name=self.request.get('first_name'),
                             last_name=self.request.get('last_name'),
                             email=self.request.get('email'),
+                            avatar=gravatar_url,
                             time_zone=self.request.get('time_zone'),
                             last_ip=self.request.remote_addr)
 
@@ -69,7 +83,7 @@ class ProfileHandler(webapp2.RequestHandler):
         if not crud.is_validated():
             validation_code = str(uuid.uuid4())
             #  TODO: Update validation_link to use coded domain
-            validation_link = "http://ae-python.appspot.com/verify?" + validation_code
+            validation_link = "https://ae-python.appspot.com/verify?" + validation_code
             email_values = {'first_name': self.request.get('first_name'),
                             'validation_link': validation_link}
             address = self.request.get('email')

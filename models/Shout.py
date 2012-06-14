@@ -21,6 +21,7 @@ class Shout(db.Model):
     message = db.TextProperty(required=True)
     when = db.DateTimeProperty(auto_now_add=True)
     who = db.StringProperty(required=True)
+    avatar = db.StringProperty()
     uid = db.StringProperty(required=True)
 
 def shouts(self, tz):  #  TODO: Expose offset to allow shout navigation
@@ -31,11 +32,11 @@ def shouts(self, tz):  #  TODO: Expose offset to allow shout navigation
         shouts_tz[i].when = shouts_tz[i].when.replace(tzinfo=pytz.utc).astimezone(tz)
     return shouts_tz
 
-def post_shout(self, message, who, uid):
+def post_shout(self, message, who, avatar, uid):
     #  TODO: decide if validating before posting 
     #  PROS: less garbage in Datastore, less chance of injection/XSS/etc
     #  CONS: higher CPU cost/response time, lack of libraries for app engine
-    shout = Shout(message=message, who=who, uid=uid)
+    shout = Shout(message=message, who=who, avatar=avatar, uid=uid)
     shout.put()
 
 #  TODO:  Add Update and Delete Shout abilities.

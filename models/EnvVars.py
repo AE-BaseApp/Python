@@ -20,7 +20,7 @@ import pytz.gae
 #  Database Model
 class EnvVars(db.Model):
     ad_provider = db.StringProperty(required=True,
-                                    choices=set(["AdSense", "devMode"]))
+                                    choices=set(['AdSense', 'devMode']))
     default_tz = db.StringProperty(required=True)
 
 
@@ -29,6 +29,11 @@ def tz_list():
 
 def env_vars():
     app_vars = db.GqlQuery('SELECT * FROM EnvVars')
+    if not app_vars.get():
+        ad_provider = 'devMode'
+        default_tz = 'America/Los_Angeles'
+        record = EnvVars(ad_provider=ad_provider, default_tz=default_tz)
+        record.put()
     return app_vars.get()
 
 def update_vars(self, adp, dtz):

@@ -15,33 +15,31 @@
 #  Libraries
 import webapp2
 from google.appengine.api import users
-from google.appengine.ext.webapp.util import login_required
 
 # Import Views
-from views.admin_view import display_admin
+from views.info_view import display_info
 
 # Import Models
+from models.Info import fetch_messages
 from models.EnvVars import update_vars
 from models.EnvVars import tz_list
 from models.EnvVars import env_vars
 
 #  Homepage Request Handler Class
-class AdminHandler(webapp2.RequestHandler):
-    @login_required
+class InfoHandler(webapp2.RequestHandler):
     def get(self):
-        values = {'logout_url': users.create_logout_url("/"),
-                  'app_vars': env_vars(),
-                  'time_zones': tz_list()}
         if users.is_current_user_admin():  # secure the page only admin can access
-            display_admin(self, values)
+            values = {'logout_url': users.create_logout_url("/"),
+                      'app_vars': env_vars(),
+                      'time_zones': tz_list(),
+                      'messages': fetch_messages()}
+            display_info(self, values)
         else:
             self.abort(401)
 
     def post(self):
         try:
-            update_vars(self, 
-                        adp=self.request.get('adp'),
-                        dtz=self.request.get('default_tz'))
-            self.redirect('/admin')
+            # TODO: create mail handling function
+            self.redirect('/infoadmin')
         except:
             self.abort(500)

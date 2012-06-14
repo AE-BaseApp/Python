@@ -24,22 +24,49 @@
     </div> <!-- centerme -->
   </div> <!-- header -->
   <div class="divClear toprule"></div>
-
+  <h2 class="red">New User Registration</h2>
   <div id="newuser" class="left">
-    <h2 class="red">New User Registration</h2>
-    <form action="" method="post" accept-charset="utf-8">
-      User Name:&nbsp;<input type="text" name="user_name" value={% ifequal profile.user_name none %} {{user.nickname}} {% else %} {{profile.user_name}} {% endifequal %} /></br>
-      First Name:&nbsp;<input type="text" name="first_name" value={{profile.first_name}} /></br>
-      Last Name:&nbsp;<input type="text" name="last_name" value={{profile.last_name}} /></br>
-      E-Mail:&nbsp;<input type="text" name="email" value={% ifequal profile.email none %} {{user.email}} {% else %} {{profile.email}} {% endifequal %} /></br>
-      Time Zone:&nbsp;<select name="time_zone">
+    <form name="profile" action="/profile" method="post" accept-charset="utf-8"
+          onsubmit="return validateForm()">
+      * User Name:&nbsp;<input type="text" name="user_name" value={% ifequal profile.user_name none %} "" {% else %} {{profile.user_name}} {% endifequal %} /></br>
+      * First Name:&nbsp;<input type="text" name="first_name" value="{{profile.first_name}}" /></br>
+      * Last Name:&nbsp;<input type="text" name="last_name" value="{{profile.last_name}}" /></br>
+      * E-Mail:&nbsp;<input type="text" name="email" value={% ifequal profile.email none %} {{user.email}} {% else %} {{profile.email}} {% endifequal %} /></br>
+      * Time Zone:&nbsp;<select name="time_zone">
+            <option value="America/Los_Angeles" selected="">America/Los_Angeles</option>
         {% for tz in time_zones %}
-            <option value="{{ tz }}"{% if tz == TIME_ZONE %} selected="selected"{% endif %}>{{ tz }}</option>
+            <option value="{{ tz }}"{% if tz == profile.time_zone %} selected="selected"{% endif %}>{{ tz }}</option>
         {% endfor %}
       </select>
       <input type = "submit" value ="Save">
     </form>
+  <script type="text/javascript">
+    function validateForm() {
+      var un=document.forms["profile"]["user_name"].value;
+      if (un==null || un=="") {
+        alert("User Name must be filled out");
+      return false;
+      }
+      var fn=document.forms["profile"]["first_name"].value;
+      if (fn==null || fn=="") {
+        alert("First Name must be filled out");
+      return false;
+      }
+      var ln=document.forms["profile"]["last_name"].value;
+      if (ln==null || ln=="") {
+        alert("Last Name must be filled out");
+      return false;
+      }
+      var em=document.forms["profile"]["email"].value;
+      if (em==null || em=="") {
+        alert("E-Mail must be filled out");
+      return false;
+      }
+
+    } // validateForm
+  </script>
   </div> <!-- newuser -->
+
 
 {% include 'footer.html' %}
 {% endautoescape %}

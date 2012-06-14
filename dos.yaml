@@ -1,0 +1,4 @@
+blacklist:
+# Yandex ignores robots.txt and runs requests every few minutes
+- subnet: 100.43.83.129
+  description: yandex.com/bot

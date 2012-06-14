@@ -1,0 +1,12 @@
+User-agent: YandexBot
+User-agent: YandexMedia
+User-agent: YandexImages
+User-agent: YandexCatalog
+User-agent: YandexDirect
+User-agent: YandexBlogs
+User-agent: YandexNews
+User-agent: YandexPageChecker
+Disallow: /
+
+User-agent: *
+Disallow: /login
