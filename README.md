@@ -54,21 +54,26 @@ Accomplished:
     * Added Django Template Filters
     * Updated env_vars.py to set a default ad_provider and default_tz
     * Basic JavaScript form validation
+    * Add Internal Validation
 
 Project Road Map:
 -----------------
   * Version 4
-    * Add Internal Validation and Error Handling (In Progress)
     * Add Shout update and delete functionality
-    * Page Security
-    * Application Logging
+    * Page Security (In Progress need to double check page access)
+#### Look at overall ability to use base app as template for new app from Git
+#### Decide what needs to be done to make the application more of a template
   * Version 5
     * Shout Navigation
     * Add OpenID URL based Authentication
     * Add OAuth
     * Add Facebook Connect 
-    * Add Avatars
+    * Add Avatars beyond Gravatars
+    * Migrate Info email attachments to blobstore
+    * Navbar
   * Planned Features
+    * Application Logging
+    * Error Handling
     * Compare Performance of Lazy Handlers
     * Add Docstrings to source files (PEP 257)
     * Update model to key based
@@ -79,7 +84,7 @@ Project Road Map:
     * Enable User Update and Delete Functionality
     * Search (by user, by content, by date)
     * Robust Admin Module
-    * Geo Location
+    * Geo Location (initial using location header, )
     * Add From Location
     * Add MiniMap popout
     * Integrate with Twitter / Facebook / ...

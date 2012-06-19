@@ -40,7 +40,6 @@ if os.environ['SERVER_SOFTWARE'].startswith('Development'):
 else:
     app_scheme = 'https'
 
-
 #  Setup the Application & Routes
 app = webapp2.WSGIApplication([
     webapp2.Route(r'/', HomeHandler),
@@ -56,6 +55,9 @@ app = webapp2.WSGIApplication([
     (r'/_ah/mail/info@.*ae-python\.appspotmail\.com', InfoInboundHandler)
 ], debug=True)
 #  TODO: Set debug=False on production
+
+def main():
+    logging.getLogger().setLevel(logging.DEBUG)
 
 
 def handle_401(request, response, exception):

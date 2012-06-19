@@ -11,13 +11,11 @@ handlers:
   static_files: static/images/favicon.ico
   upload: static/images/favicon\.ico
   mime_type: image/vnd.microsoft.icon
-  expiration: "180d"
 
 - url: /favicon\.ico
   static_files: static/images/favicon.ico
   upload: static/images/favicon\.ico
   mime_type: image/vnd.microsoft.icon
-  expiration: "180d"
 
 - url: /robots.txt
   static_files: robots.txt
@@ -26,15 +24,12 @@ handlers:
 - url: /(.*\.(gif|png|jpg))
   static_files: \1
   upload: (.*\.(gif|png|jpg))
-  expiration: "180d"
 
 - url: /static/css
   static_dir: static/css
-  expiration: "180d"
 
 - url: /static/js
   static_dir: static/js
-  expiration: "180d"
 
 # Google Web Master Verification
 - url: /google4022cd472d983097.html

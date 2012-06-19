@@ -36,6 +36,10 @@ def post_shout(self, message, who, avatar, uid):
     #  TODO: decide if validating before posting 
     #  PROS: less garbage in Datastore, less chance of injection/XSS/etc
     #  CONS: higher CPU cost/response time, lack of libraries for app engine
+    if message == None or "":
+        return("msg")
+    elif who == None or "":
+        return("who")
     shout = Shout(message=message, who=who, avatar=avatar, uid=uid)
     shout.put()
 

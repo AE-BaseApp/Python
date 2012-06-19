@@ -51,15 +51,7 @@
         From:&nbsp;&nbsp;{{profile.user_name}}
         <input type = "submit" value ="Shout It">&nbsp;Remaining:<span id="limitOne">--</span><br/>
       </form>
-      <script type="text/javascript">
-        function validateForm() {
-          var msg=document.forms["shout_msg"]["message"].value;
-          if (msg==null || msg=="") {
-            alert("Please enter a message.");
-          return false;
-          }
-        } // validateForm
-      </script>
+
 
     {% endifequal %}
   </div> <!-- shoutbox -->
@@ -86,5 +78,16 @@
   </div> <!-- content -->
 
 
+  <script type="text/javascript" src="/static/js/behaviour.js"></script>
+  <script type="text/javascript" src="/static/js/textarea_maxlen.js"></script>
+  <script type="text/javascript">
+    function validateForm() {
+      var msg=document.forms["shout_msg"]["message"].value;
+      if (msg==null || msg=="") {
+        alert("Please enter a message.");
+      return false;
+      }
+    } // validateForm
+  </script>
 {% include 'footer.html' %}
 {% endautoescape %}

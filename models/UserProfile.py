@@ -14,10 +14,10 @@
 
 # Libraries
 from google.appengine.ext import db
+from validation.email import email_re
 
 # Import Models
 from Validate import Validate
-
 
 #  Database Model
 class UserProfile(db.Model):
@@ -50,6 +50,18 @@ class ProfileCrud:
 
     def update_profile(self, user_name, first_name, last_name, email, avatar,
                        time_zone, last_ip):
+        #  Validate the input
+        if not email_re.match(email):
+            return("email")
+        elif user_name == None or "":
+            return("user")
+        elif first_name == None or "":
+            return("first")
+        elif last_name == None or "":
+            return("last")
+        elif time_zone == None or "":
+            return("tz")
+
         #  Store the Profile
         profile = db.GqlQuery('SELECT * FROM UserProfile WHERE uid = :1',
                               self.cid).get()
@@ -72,6 +84,7 @@ class ProfileCrud:
             setattr(profile, "time_zone", time_zone)
             setattr(profile, "last_ip", last_ip)
             profile.put()
+        return("OK")
 
     def delete_profile(self):  # TODO: expose delete profile to user add verification
         profile = db.GqlQuery('SELECT * FROM UserProfile WHERE uid = :1',

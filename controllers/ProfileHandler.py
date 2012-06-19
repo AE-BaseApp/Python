@@ -15,6 +15,7 @@
 #  Libraries
 import webapp2
 from google.appengine.api import users
+import logging
 
 #  Validation Libraries
 import uuid
@@ -70,13 +71,16 @@ class ProfileHandler(webapp2.RequestHandler):
             'size':str(avatar_size), 'r':'pg'})
 
         # Create or Update the profile
-        crud.update_profile(user_name=self.request.get('user_name'),
+        is_valid = crud.update_profile(user_name=self.request.get('user_name'),
                             first_name=self.request.get('first_name'),
                             last_name=self.request.get('last_name'),
                             email=self.request.get('email'),
                             avatar=gravatar_url,
                             time_zone=self.request.get('time_zone'),
                             last_ip=self.request.remote_addr)
+        logging.info("is_valid: " + is_valid)
+        if is_valid != "OK":
+            self.abort(500)
 
         #  Check if user has created a profile if not Generate Validation Code
         #  and Send out Validation Email
